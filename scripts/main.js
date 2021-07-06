@@ -1,6 +1,9 @@
-const gridSizeX = 16;
-const gridSizeY = 16;
+const gridSizeX = 15;
+const gridSizeY = 15;
 const container = document.getElementById("draw-space");
+const cellItem = document.getElementsByClassName('grid-item');
+const clearButton = document.getElementById("clear");
+let color = 'black';
 
 
 
@@ -15,13 +18,24 @@ function makeRows(rows, cols) {
 
 makeRows(gridSizeX, gridSizeY);
 
-const cellItem = document.getElementsByClassName('grid-item');
-console.log(cellItem);
+
+
 
 Array.from(cellItem).forEach(element => {
     element.addEventListener("mouseenter", function( event ) {
-        event.target.style.backgroundColor = 'black';
-    }); 
-    
+        event.target.style.backgroundColor = color;
+    });   
 });
+
+function clearGrid() {
+    Array.from(cellItem).forEach(element => {
+            element.style.backgroundColor = '';   
+    });
+}
+
+
+clearButton.addEventListener('click', function() {
+    clearGrid();
+});
+
 
