@@ -21,6 +21,7 @@ function makeRows(cols, rows) {
     let cell = document.createElement("div");
     container.appendChild(cell).className = "grid-item";
   };
+  paint();
 };
 
 makeRows(gridSizeX, gridSizeY);
@@ -40,12 +41,13 @@ sizeSelect.addEventListener('change', (event)=> {
     
 })
 
-Array.from(cellItem).forEach(element => {
-    element.addEventListener("mouseenter", function( event ) {
-        event.target.style.backgroundColor = color;
-        console.log("kajfljaf");
-    });   
-});
+function paint() {
+    Array.from(cellItem).forEach(element => {
+        element.addEventListener("mouseenter", function( event ) {
+            event.target.style.backgroundColor = color;
+        });   
+    });
+}
 
 function clearGrid() {
     Array.from(cellItem).forEach(element => {
@@ -57,5 +59,4 @@ function clearGrid() {
 clearButton.addEventListener('click', function() {
     clearGrid();
 });
-
 
