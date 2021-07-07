@@ -1,15 +1,18 @@
-const gridSizeX = 50;
-const gridSizeY = 50;
-const drawGridSize = 500;
+let gridSizeX = 32;
+let gridSizeY = 32;
+const drawGridSize = 700;
 const container = document.getElementById("draw-space");
-const cellItem = document.getElementsByClassName('grid-item');
+let cellItem = document.getElementsByClassName('grid-item');
 const clearButton = document.getElementById("clear");
+const sizeSelect = document.getElementById("grid-size");
 let color = 'black';
-let squareSize = drawGridSize/gridSizeY;
+let squareSize = drawGridSize/gridSizeX;
+let drawGridSizeY = squareSize*gridSizeY;
 
+container.style.setProperty('width', `${drawGridSize}px`);
+container.style.setProperty('height', `${drawGridSizeY}px`);
 
-
-function makeRows(rows, cols) {
+function makeRows(cols, rows) {
   container.style.setProperty('--grid-rows', rows);
   container.style.setProperty('--grid-cols', cols);
   container.style.setProperty('grid-template-rows', `repeat(var(--grid-rows), ${squareSize}px)`);
@@ -22,12 +25,25 @@ function makeRows(rows, cols) {
 
 makeRows(gridSizeX, gridSizeY);
 
+function clearDrawnGrid() {
+    while (container.firstChild) {
+        container.firstChild.remove();
+    }
+}
 
-
+sizeSelect.addEventListener('change', (event)=> {
+    let num = Number(event.target.value);
+    clearDrawnGrid();
+    squareSize = drawGridSize/num;
+    drawGridSizeY = squareSize*num;
+    makeRows(num, num);
+    
+})
 
 Array.from(cellItem).forEach(element => {
     element.addEventListener("mouseenter", function( event ) {
         event.target.style.backgroundColor = color;
+        console.log("kajfljaf");
     });   
 });
 

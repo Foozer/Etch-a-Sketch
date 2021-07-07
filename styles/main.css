@@ -10,8 +10,7 @@ h1 {
 #draw-space {
     display: grid;
     /*grid-gap: 1px;*/
-    width: 500px;
-    height: 500px;
+    
     grid-template-columns: 1fr minmax(auto, 20%);
     background-color: cornflowerblue;
 }
