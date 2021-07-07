@@ -1,23 +1,41 @@
+body {
+    background-color: darkgray;
+}
 h1 {
-    background-color: antiquewhite;
+    text-align: center;
 }
 
 :root {
     --grid-cols: 1;
     --grid-rows: 1;
 }
-  
+
+#main-space {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #draw-space {
     display: grid;
     /*grid-gap: 1px;*/
     
     grid-template-columns: 1fr minmax(auto, 20%);
     background-color: cornflowerblue;
+    border: 5px double black;
 }
   
 .grid-item {
     /*padding: 10px;*/
-    border: 1px solid rgb(0, 0, 0);
-    
+    /*border: 1px solid rgb(0, 0, 0);*/
 }
+
+#options {
+    padding: 20px;
+    margin: 20px;
+    border: 5px double black;
+}
+    
+
 

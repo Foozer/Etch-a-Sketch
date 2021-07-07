@@ -1,11 +1,11 @@
 let gridSizeX = 32;
 let gridSizeY = 32;
-const drawGridSize = 700;
+const drawGridSize = 500;
 const container = document.getElementById("draw-space");
 let cellItem = document.getElementsByClassName('grid-item');
 const clearButton = document.getElementById("clear");
 const sizeSelect = document.getElementById("grid-size");
-let color = 'black';
+let defaultColor = 'black';
 let squareSize = drawGridSize/gridSizeX;
 let drawGridSizeY = squareSize*gridSizeY;
 
@@ -21,7 +21,7 @@ function makeRows(cols, rows) {
     let cell = document.createElement("div");
     container.appendChild(cell).className = "grid-item";
   };
-  paint();
+  paint(defaultColor);
 };
 
 makeRows(gridSizeX, gridSizeY);
@@ -32,16 +32,18 @@ function clearDrawnGrid() {
     }
 }
 
-sizeSelect.addEventListener('change', (event)=> {
-    let num = Number(event.target.value);
-    clearDrawnGrid();
-    squareSize = drawGridSize/num;
-    drawGridSizeY = squareSize*num;
-    makeRows(num, num);
-    
-})
+function sizeOfGrid() {
+    sizeSelect.addEventListener('change', (event)=> {
+        let num = Number(event.target.value);
+        clearDrawnGrid();
+        squareSize = drawGridSize/num;
+        drawGridSizeY = squareSize*num;
+        makeRows(num, num);
+        
+    })
+}
 
-function paint() {
+function paint(color) {
     Array.from(cellItem).forEach(element => {
         element.addEventListener("mouseenter", function( event ) {
             event.target.style.backgroundColor = color;
@@ -60,3 +62,6 @@ clearButton.addEventListener('click', function() {
     clearGrid();
 });
 
+
+
+sizeOfGrid();
